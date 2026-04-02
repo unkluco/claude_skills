@@ -1,84 +1,67 @@
-<svg viewBox="0 0 720 230" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
-<style>
-  .bg       { fill: #ffffff }
-  .bg-row   { fill: #f6f8fa }
-  .border   { stroke: #d0d7de; stroke-width: 0.5 }
-  .title    { fill: #1f2328; font-size: 13px; font-weight: 600 }
-  .subtitle { fill: #57606a; font-size: 11px }
-  .label    { fill: #1f2328; font-size: 12px }
-  .label-sm { fill: #57606a; font-size: 11px }
-  .val      { fill: #1f2328; font-size: 12px; font-weight: 600 }
-  .pct-red  { fill: #ffffff; font-size: 11px; font-weight: 600 }
-  .pct-amb  { fill: #ffffff; font-size: 11px; font-weight: 600 }
-  .pct-grn  { fill: #ffffff; font-size: 11px; font-weight: 600 }
-  .bar-red  { fill: #E24B4A }
-  .bar-amb  { fill: #EF9F27 }
-  .bar-grn  { fill: #1D9E75 }
-  .tick     { stroke: #d0d7de; stroke-width: 0.5 }
-  .tick-lbl { fill: #57606a; font-size: 10px }
-  .badge-bg-grn { fill: #eaf3de }
-  .badge-txt-grn { fill: #3B6D11; font-size: 11px; font-weight: 600 }
-  .savings-bg { fill: #1D9E75 }
-  .savings-txt { fill: #ffffff; font-size: 11px; font-weight: 600 }
-  @media (prefers-color-scheme: dark) {
-    .bg       { fill: #0d1117 }
-    .bg-row   { fill: #161b22 }
-    .border   { stroke: #30363d }
-    .title    { fill: #e6edf3 }
-    .subtitle { fill: #8b949e }
-    .label    { fill: #e6edf3 }
-    .label-sm { fill: #8b949e }
-    .val      { fill: #e6edf3 }
-    .tick     { stroke: #30363d }
-    .tick-lbl { fill: #8b949e }
-    .badge-bg-grn { fill: #173404 }
-    .badge-txt-grn { fill: #97C459 }
-  }
-</style>
+<svg viewBox="0 0 720 455" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:720px" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
 
-<rect width="720" height="230" rx="8" class="bg border"/>
-
-<text x="24" y="30" class="title">Token consumption</text>
-<text x="24" y="46" class="subtitle">Reading a 50-line function inside an 800-line file</text>
-
-<line x1="24" y1="56" x2="696" y2="56" class="tick"/>
-
-<rect x="0" y="57" width="720" height="52" rx="0" class="bg-row" opacity="0.5"/>
-
-<text x="24" y="82" class="label">view full file</text>
-<text x="24" y="96" class="label-sm">view_range [1, 800]</text>
-
-<rect x="200" y="64" width="420" height="22" rx="4" class="bar-red"/>
-<text x="210" y="79" class="pct-red">100% — 800 lines</text>
-
-<text x="24" y="138" class="label">rough estimate</text>
-<text x="24" y="152" class="label-sm">view_range [250, 450]</text>
-
-<rect x="200" y="120" width="105" height="22" rx="4" class="bar-amb"/>
-<text x="210" y="135" class="pct-amb">25%</text>
-<text x="313" y="135" class="val"> — 200 lines</text>
-
-<rect x="0" y="113" width="720" height="52" rx="0" class="bg-row" opacity="0.5"/>
-
-<text x="24" y="194" class="label">line-locator</text>
-<text x="24" y="208" class="label-sm">findtree → findtool → view_range</text>
-
-<rect x="200" y="176" width="42" height="22" rx="4" class="bar-grn"/>
-<text x="210" y="191" class="pct-grn">10%</text>
-<text x="249" y="191" class="val"> — 80 lines</text>
-
-<rect x="564" y="176" width="108" height="22" rx="4" class="savings-bg"/>
-<text x="618" y="191" text-anchor="middle" class="savings-txt">saves ~90%</text>
-
-<line x1="200" y1="57" x2="200" y2="218" class="tick"/>
-<line x1="305" y1="57" x2="305" y2="218" class="tick" stroke-dasharray="3,3"/>
-<line x1="410" y1="57" x2="410" y2="218" class="tick" stroke-dasharray="3,3"/>
-<line x1="515" y1="57" x2="515" y2="218" class="tick" stroke-dasharray="3,3"/>
-<line x1="620" y1="57" x2="620" y2="218" class="tick" stroke-dasharray="3,3"/>
-
-<text x="200" y="222" text-anchor="middle" class="tick-lbl">0</text>
-<text x="305" y="222" text-anchor="middle" class="tick-lbl">200</text>
-<text x="410" y="222" text-anchor="middle" class="tick-lbl">400</text>
-<text x="515" y="222" text-anchor="middle" class="tick-lbl">600</text>
-<text x="620" y="222" text-anchor="middle" class="tick-lbl">800 lines</text>
+<rect width="720" height="445" rx="8" style="fill:rgb(48, 48, 46);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<text x="16" y="26" style="fill:rgb(250, 249, 245);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:13px;font-weight:600;text-anchor:start;dominant-baseline:auto">Token consumption — savings grow with file size</text>
+<text x="16" y="42" style="fill:rgb(194, 192, 182);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:11px;font-weight:400;text-anchor:start;dominant-baseline:auto">50-line target function · bars normalized per file (100% = reading the whole file)</text>
+<rect x="16" y="50" width="10" height="10" rx="2" style="fill:rgb(226, 75, 74);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/><text x="30" y="60" style="fill:rgb(194, 192, 182);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:11px;font-weight:400;text-anchor:start;dominant-baseline:auto">view full file</text>
+<rect x="135" y="50" width="10" height="10" rx="2" style="fill:rgb(239, 159, 39);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/><text x="149" y="60" style="fill:rgb(194, 192, 182);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:11px;font-weight:400;text-anchor:start;dominant-baseline:auto">rough estimate</text>
+<rect x="278" y="50" width="10" height="10" rx="2" style="fill:rgb(29, 158, 117);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/><text x="292" y="60" style="fill:rgb(194, 192, 182);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:11px;font-weight:400;text-anchor:start;dominant-baseline:auto">line-locator</text>
+<line x1="16" y1="68" x2="704" y2="68" style="fill:rgb(0, 0, 0);stroke:rgba(222, 220, 209, 0.15);color:rgb(255, 255, 255);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<rect x="0" y="69" width="720" height="22" style="fill:rgb(38, 38, 36);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<text x="16" y="84" style="fill:rgb(250, 249, 245);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:600;text-anchor:start;dominant-baseline:auto">800-line file</text>
+<text x="16" y="111" style="fill:rgb(194, 192, 182);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:11px;font-weight:400;text-anchor:start;dominant-baseline:auto">view full file</text>
+<rect x="200" y="95" width="420" height="22" rx="4" style="fill:rgb(226, 75, 74);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<text x="207" y="110" fill="#fff" font-size="11" font-weight="600" style="fill:rgb(255, 255, 255);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:11px;font-weight:600;text-anchor:start;dominant-baseline:auto">100%</text>
+<text x="626" y="110" style="fill:rgb(250, 249, 245);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:11px;font-weight:500;text-anchor:start;dominant-baseline:auto">800 lines</text>
+<text x="16" y="141" style="fill:rgb(194, 192, 182);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:11px;font-weight:400;text-anchor:start;dominant-baseline:auto">rough estimate</text>
+<rect x="200" y="125" width="105" height="22" rx="4" style="fill:rgb(239, 159, 39);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<text x="207" y="140" fill="#5a3a00" font-size="11" font-weight="600" style="fill:rgb(90, 58, 0);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:11px;font-weight:600;text-anchor:start;dominant-baseline:auto">25%</text>
+<text x="311" y="140" style="fill:rgb(250, 249, 245);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:11px;font-weight:500;text-anchor:start;dominant-baseline:auto">200 lines</text>
+<text x="16" y="171" style="fill:rgb(194, 192, 182);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:11px;font-weight:400;text-anchor:start;dominant-baseline:auto">line-locator</text>
+<rect x="200" y="155" width="42" height="22" rx="4" style="fill:rgb(29, 158, 117);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<text x="248" y="170" style="fill:rgb(250, 249, 245);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:11px;font-weight:500;text-anchor:start;dominant-baseline:auto">80 lines</text>
+<rect x="565" y="155" width="112" height="22" rx="11" fill="#1D9E75" style="fill:rgb(29, 158, 117);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<text x="621" y="170" text-anchor="middle" fill="#fff" font-size="11" font-weight="600" style="fill:rgb(255, 255, 255);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:11px;font-weight:600;text-anchor:middle;dominant-baseline:auto">saves 90%</text>
+<line x1="16" y1="189" x2="704" y2="189" style="fill:rgb(0, 0, 0);stroke:rgba(222, 220, 209, 0.15);color:rgb(255, 255, 255);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<rect x="0" y="190" width="720" height="22" style="fill:rgb(38, 38, 36);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<text x="16" y="205" style="fill:rgb(250, 249, 245);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:600;text-anchor:start;dominant-baseline:auto">1500-line file</text>
+<text x="16" y="232" style="fill:rgb(194, 192, 182);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:11px;font-weight:400;text-anchor:start;dominant-baseline:auto">view full file</text>
+<rect x="200" y="216" width="420" height="22" rx="4" style="fill:rgb(226, 75, 74);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<text x="207" y="231" fill="#fff" font-size="11" font-weight="600" style="fill:rgb(255, 255, 255);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:11px;font-weight:600;text-anchor:start;dominant-baseline:auto">100%</text>
+<text x="626" y="231" style="fill:rgb(250, 249, 245);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:11px;font-weight:500;text-anchor:start;dominant-baseline:auto">1500 lines</text>
+<text x="16" y="262" style="fill:rgb(194, 192, 182);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:11px;font-weight:400;text-anchor:start;dominant-baseline:auto">rough estimate</text>
+<rect x="200" y="246" width="112" height="22" rx="4" style="fill:rgb(239, 159, 39);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<text x="207" y="261" fill="#5a3a00" font-size="11" font-weight="600" style="fill:rgb(90, 58, 0);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:11px;font-weight:600;text-anchor:start;dominant-baseline:auto">27%</text>
+<text x="318" y="261" style="fill:rgb(250, 249, 245);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:11px;font-weight:500;text-anchor:start;dominant-baseline:auto">400 lines</text>
+<text x="16" y="292" style="fill:rgb(194, 192, 182);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:11px;font-weight:400;text-anchor:start;dominant-baseline:auto">line-locator</text>
+<rect x="200" y="276" width="23" height="22" rx="4" style="fill:rgb(29, 158, 117);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<text x="229" y="291" style="fill:rgb(250, 249, 245);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:11px;font-weight:500;text-anchor:start;dominant-baseline:auto">80 lines</text>
+<rect x="565" y="276" width="112" height="22" rx="11" fill="#1D9E75" style="fill:rgb(29, 158, 117);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<text x="621" y="291" text-anchor="middle" fill="#fff" font-size="11" font-weight="600" style="fill:rgb(255, 255, 255);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:11px;font-weight:600;text-anchor:middle;dominant-baseline:auto">saves 95%</text>
+<line x1="16" y1="310" x2="704" y2="310" style="fill:rgb(0, 0, 0);stroke:rgba(222, 220, 209, 0.15);color:rgb(255, 255, 255);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<rect x="0" y="311" width="720" height="22" style="fill:rgb(38, 38, 36);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<text x="16" y="326" style="fill:rgb(250, 249, 245);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:600;text-anchor:start;dominant-baseline:auto">5000-line file</text>
+<text x="16" y="353" style="fill:rgb(194, 192, 182);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:11px;font-weight:400;text-anchor:start;dominant-baseline:auto">view full file</text>
+<rect x="200" y="337" width="420" height="22" rx="4" style="fill:rgb(226, 75, 74);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<text x="207" y="352" fill="#fff" font-size="11" font-weight="600" style="fill:rgb(255, 255, 255);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:11px;font-weight:600;text-anchor:start;dominant-baseline:auto">100%</text>
+<text x="626" y="352" style="fill:rgb(250, 249, 245);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:11px;font-weight:500;text-anchor:start;dominant-baseline:auto">5000 lines</text>
+<text x="16" y="383" style="fill:rgb(194, 192, 182);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:11px;font-weight:400;text-anchor:start;dominant-baseline:auto">rough estimate</text>
+<rect x="200" y="367" width="84" height="22" rx="4" style="fill:rgb(239, 159, 39);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<text x="207" y="382" fill="#5a3a00" font-size="11" font-weight="600" style="fill:rgb(90, 58, 0);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:11px;font-weight:600;text-anchor:start;dominant-baseline:auto">20%</text>
+<text x="290" y="382" style="fill:rgb(250, 249, 245);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:11px;font-weight:500;text-anchor:start;dominant-baseline:auto">1000 lines</text>
+<text x="16" y="413" style="fill:rgb(194, 192, 182);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:11px;font-weight:400;text-anchor:start;dominant-baseline:auto">line-locator</text>
+<rect x="200" y="397" width="18" height="22" rx="4" style="fill:rgb(29, 158, 117);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<text x="224" y="412" style="fill:rgb(250, 249, 245);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:11px;font-weight:500;text-anchor:start;dominant-baseline:auto">80 lines</text>
+<rect x="565" y="397" width="112" height="22" rx="11" fill="#1D9E75" style="fill:rgb(29, 158, 117);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<text x="621" y="412" text-anchor="middle" fill="#fff" font-size="11" font-weight="600" style="fill:rgb(255, 255, 255);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:11px;font-weight:600;text-anchor:middle;dominant-baseline:auto">saves 98%</text>
+<line x1="200" y1="425" x2="200" y2="430" style="fill:rgb(0, 0, 0);stroke:rgba(222, 220, 209, 0.15);color:rgb(255, 255, 255);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<line x1="305" y1="425" x2="305" y2="430" style="fill:rgb(0, 0, 0);stroke:rgba(222, 220, 209, 0.15);color:rgb(255, 255, 255);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<line x1="410" y1="425" x2="410" y2="430" style="fill:rgb(0, 0, 0);stroke:rgba(222, 220, 209, 0.15);color:rgb(255, 255, 255);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<line x1="515" y1="425" x2="515" y2="430" style="fill:rgb(0, 0, 0);stroke:rgba(222, 220, 209, 0.15);color:rgb(255, 255, 255);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<line x1="620" y1="425" x2="620" y2="430" style="fill:rgb(0, 0, 0);stroke:rgba(222, 220, 209, 0.15);color:rgb(255, 255, 255);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<text x="200" y="442" text-anchor="middle" style="fill:rgb(194, 192, 182);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:10px;font-weight:400;text-anchor:middle;dominant-baseline:auto">0%</text>
+<text x="305" y="442" text-anchor="middle" style="fill:rgb(194, 192, 182);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:10px;font-weight:400;text-anchor:middle;dominant-baseline:auto">25%</text>
+<text x="410" y="442" text-anchor="middle" style="fill:rgb(194, 192, 182);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:10px;font-weight:400;text-anchor:middle;dominant-baseline:auto">50%</text>
+<text x="515" y="442" text-anchor="middle" style="fill:rgb(194, 192, 182);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:10px;font-weight:400;text-anchor:middle;dominant-baseline:auto">75%</text>
+<text x="620" y="442" text-anchor="middle" style="fill:rgb(194, 192, 182);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:10px;font-weight:400;text-anchor:middle;dominant-baseline:auto">100%</text>
 </svg>
