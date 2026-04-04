@@ -414,6 +414,23 @@ python findtool.py --file service.py -e "\{"
 # → {"matched": true}  → file có {, tiến hành bình thường
 ```
 
+### 9. Dùng `\|` thay vì `|` cho alternation trong Python regex
+
+```bash
+# ❌ SAI — \| trong Python regex là ký tự pipe literal, không phải alternation
+python findtool.py --file app.java -mr "focusLost\|hidePopup\|showPopup"
+# → {"matches": {"focusLost\\|hidePopup\\|showPopup": []}}  ← tìm chuỗi literal   "focusLost|hidePopup|showPopup"
+
+# ✅ ĐÚNG — | không cần escape trong Python regex
+python findtool.py --file app.java -mr "focusLost|hidePopup|showPopup"
+# → {"matches": {"focusLost|hidePopup|showPopup": [192, 723, 701]}}
+
+Lý do nhầm: grep basic mode (BRE) dùng \| cho alternation. Python dùng ERE-style — | đã là   alternation, \| là literal pipe.
+
+Khi nào \| hợp lệ: không bao giờ trong Python regex nếu mục đích là alternation.
+
+---
+
 ---
 
 ## Bảng quyết định nhanh
