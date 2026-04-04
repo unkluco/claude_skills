@@ -5,7 +5,7 @@ description: >
 author: Kluco
 github: unkluco
 email: huylet334@gmail.com
-version: 1.1.0
+version: 1.1.1
 ---
 
 # Line-Locator
@@ -428,8 +428,7 @@ python findtool.py --file app.java -mr "focusLost|hidePopup|showPopup"
 Lý do nhầm: grep basic mode (BRE) dùng \| cho alternation. Python dùng ERE-style — | đã là   alternation, \| là literal pipe.
 
 Khi nào \| hợp lệ: không bao giờ trong Python regex nếu mục đích là alternation.
-
----
+```
 
 ---
 
