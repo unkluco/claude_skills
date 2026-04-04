@@ -2,136 +2,31 @@
 r"""
 findtree.py
 
-A high-throughput folder scanner for answering one question quickly:
-"Which files under this root contain this pattern?"
-
-This tool is intentionally different from the file-level helper:
-- It does NOT compute line numbers.
-- It does NOT do delimiter matching.
-- It focuses on fast whole-tree filtering and returns relative paths.
-
-WHY THIS TOOL EXISTS
---------------------
-When an agent needs to search a repository or a large project tree, the most
-important first step is usually to shortlist the matching files quickly. A
-file-level tool is great once a specific file is known, but it pays a lot of
-per-file overhead when used across an entire tree.
-
-This tool therefore uses a folder-specific strategy:
-- fast directory traversal with os.scandir()
-- aggressive early filtering (include/exclude, binary skip, size skip)
-- early exit as soon as a file is known to match
-- a fast literal engine for common fixed-string searches
-- a regex engine for line-based regex existence checks
+Folder-level scanner: "Which files under this root contain this pattern?"
 
 SEARCH MODEL
 ------------
-The tool answers only whether a file matches, not where inside the file the
-match occurs.
+- Answers only whether a file matches — not where inside it.
+- Patterns are Python regular expressions.
+- Matching is line-based (no cross-line regex).
+- Skips bulky dirs by default: .git, node_modules, venv, __pycache__, dist, etc.
+- Skips binary files by default (--allow-binary to disable).
 
-ENGINES
--------
---engine auto     Automatically choose an engine:
-                  - literal if the pattern does not look like regex
-                  - regex otherwise
-
---engine literal  Treat PATTERN as a literal string.
-                  Fastest option for exact text search.
-                  Implementation detail: search is performed on raw bytes,
-                  chunk by chunk, with overlap, and stops at the first match.
-
---engine regex    Treat PATTERN as a Python regular expression.
-                  Regex search is line-based, not whole-file multi-line.
-                  This matches the semantics of the file-level tool's line
-                  search and avoids loading whole large files into memory.
-
-IMPORTANT REGEX SEMANTICS
--------------------------
-Regex mode checks whether ANY LINE in the file matches the pattern.
-It is NOT intended for multi-line regex spanning across newline boundaries.
-Examples like these work well:
-    TODO
-    public\s+void\s+\w+\(
-    (?i)build(Toa|Connector)
-
-Examples that expect a match across multiple lines are intentionally not a fit
-for this tool. Use a more specialized file-level or parser-aware tool for that.
-
-DEFAULT PERFORMANCE GUARDS
---------------------------
-By default the scanner skips common bulky directories that are rarely useful for
-source search and often dominate runtime:
-    .git, .hg, .svn, node_modules, venv, .venv, __pycache__, dist, build,
-    target, .mypy_cache, .pytest_cache, .tox, coverage
-
-By default the scanner also skips binary files using a small header heuristic.
-You can disable that with --allow-binary.
-
-OUTPUT MODEL
-------------
-The primary result is a list of relative file paths.
-
-By default this tool emits JSON to stdout on success.
-On failure it emits JSON to stderr and exits with status 1.
-
-Success shape:
-    {
-      "ok": true,
-      "engine": "literal",
-      "matched_files": ["src/foo.py", ...],
-      "error_files":   [...],       -- only when --show includes errors
-      "summary":       {...}        -- only when --show includes summary
-    }
-
-Failure shape:
-    {
-      "ok": false,
-      "error": "...message..."
-    }
-
-For human-readable output, pass --text.
-
-Depending on --show, output may include:
-- matched_files  files that contain the pattern
-- error_files    files/directories that could not be scanned
-- summary        scan counters and truncation info
-
-Default --show is "matched". Pass --show all for the full report.
+OUTPUT  (JSON by default)
+  success → stdout:
+    {"matched_files": ["src/foo.py", ...]}
+    with --show errors/summary/all: also "error_files", "summary" keys
+  failure → stderr, exit 1:
+    {"ok": false, "error": "..."}
 
 EXAMPLES
 --------
-Find files containing an exact token (JSON output by default):
-    python findtree.py --root ./src --pattern refreshAssemblyPanel
-
-Force literal search:
-    python findtree.py --root ./src --pattern "foo(bar)" --engine literal
-
-Regex search:
-    python findtree.py --root ./src --pattern "(?i)todo|fixme" --engine regex
-
-Restrict to selected files:
-    python findtree.py --root ./src --pattern TODO --include "*.py" "*.java"
-
-Exclude a subtree:
-    python findtree.py --root ./src --pattern TODO --exclude "tests/**"
-
-Full report including summary and errors:
-    python findtree.py --root ./src --pattern TODO --show all
-
-Human-readable output:
-    python findtree.py --root ./src --pattern TODO --text
-
-Stop after the first 20 matching files:
-    python findtree.py --root ./src --pattern TODO --max-results 20
-
-CASE SENSITIVITY
-----------------
-Use --ignore-case to do a case-insensitive search.
-
-In literal mode this is optimized for source-code style text and is implemented
-with byte-wise lowercasing. This is very fast and works well for ASCII-heavy
-repositories. If you need richer Unicode-aware case-insensitive semantics,
-prefer regex mode.
+  python findtree.py --root ./src --pattern "refreshAssemblyPanel"
+  python findtree.py --root ./src --pattern "class\s+\w+Service"
+  python findtree.py --root ./src --pattern "TODO" --include "*.py" "*.java"
+  python findtree.py --root ./src --pattern "TODO" --exclude "tests/**"
+  python findtree.py --root ./src --pattern "deprecated_api" --max-results 1
+  python findtree.py --root ./src --pattern "TODO" --show all
 """
 from __future__ import annotations
 
@@ -195,7 +90,6 @@ class ScanSummary:
 class SearchConfig:
     root: Path
     pattern: str
-    engine: str
     ignore_case: bool
     include: List[str]
     exclude: List[str]
@@ -212,7 +106,6 @@ class SearchConfig:
 @dataclass
 class SearchResult:
     root: str
-    engine: str
     matched_files: List[str]
     errors: List[ScanError]
     summary: ScanSummary
@@ -251,26 +144,6 @@ def parse_size_limit(value: Optional[str]) -> Optional[int]:
     return amount * multiplier
 
 
-def detect_engine(pattern: str, requested_engine: str) -> str:
-    if requested_engine != "auto":
-        return requested_engine
-    if looks_like_regex(pattern):
-        return "regex"
-    return "literal"
-
-
-def looks_like_regex(pattern: str) -> bool:
-    """
-    Fast and intentionally simple heuristic:
-    if the pattern contains common regex metacharacters, treat it as regex.
-
-    This is not meant to fully parse regex syntax. The goal is only to select a
-    useful default engine in --engine auto mode.
-    """
-    if pattern == "":
-        return False
-    regex_meta = set(".^$*+?{}[]\\|()")
-    return any(ch in regex_meta for ch in pattern)
 
 
 def parse_regex(pattern: str, ignore_case: bool) -> Pattern[str]:
@@ -378,40 +251,6 @@ def is_probably_binary(path: Path) -> bool:
     return b"\x00" in sample
 
 
-def file_contains_literal(path: Path, pattern: str, ignore_case: bool) -> bool:
-    """
-    Fast fixed-string existence search.
-
-    The file is scanned in chunks and we keep an overlap window of
-    len(needle)-1 bytes so matches that straddle chunk boundaries are still
-    found. We stop as soon as a match is found.
-    """
-    needle = pattern.encode("utf-8")
-    if needle == b"":
-        raise ValueError("PATTERN must not be empty.")
-
-    if ignore_case:
-        needle = needle.lower()
-
-    overlap_size = max(0, len(needle) - 1)
-    overlap = b""
-
-    with path.open("rb", buffering=CHUNK_SIZE) as fh:
-        while True:
-            chunk = fh.read(CHUNK_SIZE)
-            if not chunk:
-                return False
-
-            data = overlap + chunk
-            haystack = data.lower() if ignore_case else data
-            if needle in haystack:
-                return True
-
-            if overlap_size:
-                overlap = data[-overlap_size:]
-            else:
-                overlap = b""
-
 
 def file_contains_regex_linewise(path: Path, compiled: Pattern[str]) -> bool:
     """
@@ -430,14 +269,8 @@ def file_contains_regex_linewise(path: Path, compiled: Pattern[str]) -> bool:
     return False
 
 
-def search_path(path: Path, engine: str, pattern: str, compiled_regex: Optional[Pattern[str]], ignore_case: bool) -> bool:
-    if engine == "literal":
-        return file_contains_literal(path, pattern, ignore_case)
-    if engine == "regex":
-        if compiled_regex is None:
-            raise RuntimeError("Regex engine selected without compiled regex.")
-        return file_contains_regex_linewise(path, compiled_regex)
-    raise RuntimeError(f"Unsupported engine: {engine}")
+def search_path(path: Path, compiled_regex: Pattern[str]) -> bool:
+    return file_contains_regex_linewise(path, compiled_regex)
 
 
 def run_search(config: SearchConfig) -> SearchResult:
@@ -445,8 +278,7 @@ def run_search(config: SearchConfig) -> SearchResult:
     errors: List[ScanError] = []
     summary = ScanSummary()
 
-    engine = detect_engine(config.pattern, config.engine)
-    compiled_regex = parse_regex(config.pattern, config.ignore_case) if engine == "regex" else None
+    compiled_regex = parse_regex(config.pattern, config.ignore_case)
 
     for path in iter_files(config.root, config, errors, summary):
         rel_path = normalize_relpath(path, config.root)
@@ -468,7 +300,7 @@ def run_search(config: SearchConfig) -> SearchResult:
                 continue
 
             summary.searched_files += 1
-            if search_path(path, engine, config.pattern, compiled_regex, config.ignore_case):
+            if search_path(path, compiled_regex):
                 matched_files.append(rel_path)
                 summary.matched_count += 1
                 if config.max_results is not None and summary.matched_count >= config.max_results:
@@ -481,14 +313,11 @@ def run_search(config: SearchConfig) -> SearchResult:
 
     matched_files.sort()
     errors.sort(key=lambda item: item.path)
-    return SearchResult(root=str(config.root), engine=engine, matched_files=matched_files, errors=errors, summary=summary)
+    return SearchResult(root=str(config.root), matched_files=matched_files, errors=errors, summary=summary)
 
 
 def build_payload(result: SearchResult, config: SearchConfig) -> dict:
-    payload: dict = {
-        "ok": True,
-        "engine": result.engine,
-    }
+    payload: dict = {}
 
     if config.show in {"matched", "both", "all"}:
         payload["matched_files"] = result.matched_files
@@ -547,13 +376,7 @@ def build_parser() -> argparse.ArgumentParser:
         description="Fast folder scanner that returns relative paths of files containing a pattern."
     )
     parser.add_argument("--root", required=True, help="Root directory to scan.")
-    parser.add_argument("--pattern", required=True, help="Pattern to search for.")
-    parser.add_argument(
-        "--engine",
-        choices=["auto", "literal", "regex"],
-        default="auto",
-        help="Search engine to use. Default: auto.",
-    )
+    parser.add_argument("--pattern", required=True, help="Pattern to search for (Python regex).")
     parser.add_argument(
         "--ignore-case",
         action="store_true",
@@ -612,11 +435,6 @@ def build_parser() -> argparse.ArgumentParser:
         action="store_true",
         help="Emit human-readable text instead of JSON.",
     )
-    parser.add_argument(
-        "--json",
-        action="store_true",
-        help="Accepted for compatibility. JSON is already the default.",
-    )
     return parser
 
 
@@ -638,7 +456,6 @@ def parse_args(argv: Optional[Sequence[str]] = None) -> SearchConfig:
     return SearchConfig(
         root=root,
         pattern=args.pattern,
-        engine=args.engine,
         ignore_case=args.ignore_case,
         include=args.include,
         exclude=args.exclude,
